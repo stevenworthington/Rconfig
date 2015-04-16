@@ -1,26 +1,25 @@
 
+# =======================================================================
 # .Rprofile options
-options(
-    stringsAsFactors = FALSE,
-    show.signif.stars = FALSE,
-    width = 220,
-    scipen = 12
-    )
 
 # options
 Sys.setlocale(category = "LC_ALL", locale = "en_US.UTF-8")
 
 # rm(list=ls())
 .First <- function() {
-  options(width = 120)
-  options(useFancyQuotes = FALSE)
-  options(show.signif.stars = FALSE)
-  options(scipen = 10)
-  options(digits = 3)
-  options(save.defaults = list(ascii = TRUE)) # or compress = TRUE
-  options(device = "quartz")
-  options(stringsAsFactors = FALSE) # turn off factors
+  options(
+      width = 220,
+      useFancyQuotes = FALSE,
+      show.signif.stars = FALSE,
+      stringsAsFactors = FALSE, # turn off factors
+      scipen = 12,
+      digits = 6,
+      save.defaults = list(ascii = TRUE), # or compress = TRUE
+      device = "quartz"
 }
+
+# set.seed default
+set.seed(1234)
 
 # Sweave
 Sys.setenv("SWEAVE_STYLEPATH_DEFAULT" = "TRUE")
@@ -28,42 +27,16 @@ Sys.setenv("SWEAVE_STYLEPATH_DEFAULT" = "TRUE")
 # so the mac gui can find latex
 Sys.setenv("PATH" = paste(Sys.getenv("PATH"),"/usr/texbin",sep=":"))
 
-# graphics devices
-#goquartz = function() { # running in terminal -- it gives a quartz display #instead of X11
-#  library("grDevices")
-#  library("CarbonEL")
-#  options(device = "quartz")
-#  Sys.unsetenv("DISPLAY")
-#}
-
-#if (.Platform$GUI == "X11") {
-#  goquartz()
-#}
-
-
 # setHook
 setHook(packageEvent("grDevices", "onLoad"),
 	function(...) grDevices::ps.options(horizontal=FALSE)) # set defaults for postscript graphics device
 setHook(packageEvent("grDevices", "onLoad"),
 	function(...) grDevices::quartz.options(width=7, height=7, pointsize=10)) # set defaults for quartz graphics device
 
-# set.seed default
-set.seed(1234)
-
-# first and last messages
-#.First <- function() cat("\n Rrrr! The statistics program for Pirates!\n\n")
-#.Last <- function() cat("\n Rrrr! Avast Ye, YO HO!\n\n")
-
-
-
 
 # =======================================================================
-
-
-
-
-
 # .Rprofile packages
+
 local({
   # add list of packages to the default packages, set a CRAN mirror
   old <- getOption("defaultPackages") # "datasets", "utils", "grDevices", "graphics", "stats", "methods"
@@ -79,14 +52,12 @@ local({
 
 # (.packages()) # list loaded packages
 
-
 # mysql databases
 #library("RMySQL")
 #library("foreign")
 #answer <- readline("What database would you like to connect to? ")
 #con <- dbConnect(MySQL(), user="root", password="mypass", dbname=answer)
 #dbs <- dbGetQuery(con, "show databases;")
-
 
 # Make default library path a directory not included in the R installation.
 # This makes /Users/stevenworthington/Library/R_library the default path without losing the other paths. 
@@ -104,14 +75,7 @@ local({
 # install.packages('aPackage', lib=.libwork)
 
 
-
-
 # =======================================================================
-
-
-
-
-
 # functions in regular use
 
 # lambda (also called H^2)
@@ -190,7 +154,7 @@ robSE <- function(model) {
 
 # shorthand
 lsos <- function(..., n=10) {
-    .ls.objects(..., order.by="Size", decreasing=TRUE, head=TRUE, n=n)
+    .ls.objects(..., order.by = "Size", decreasing = TRUE, head = TRUE, n = n)
 }
 
 # use last(x) instead of x[length(x)], works on matrices too
@@ -342,7 +306,7 @@ arcsineTran <- function(y, n){
 }
 
 # remove multiple elements from a dataframe
-'%notin%' <- function(x, y) !(x %in% y)
+"%notin%" <- function(x, y) !(x %in% y)
 
 # also provided by the Hmisc package
-'%nin%' <- Negate('%in%')
+"%nin%" <- Negate("%in%")
