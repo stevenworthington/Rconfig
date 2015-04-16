@@ -7,15 +7,16 @@ Sys.setlocale(category = "LC_ALL", locale = "en_US.UTF-8")
 
 # rm(list=ls())
 .First <- function() {
-  options(
-      width = 220,
-      useFancyQuotes = FALSE,
-      show.signif.stars = FALSE,
-      stringsAsFactors = FALSE, # turn off factors
-      scipen = 12,
-      digits = 6,
-      save.defaults = list(ascii = TRUE), # or compress = TRUE
-      device = "quartz"
+    options(
+        width = 220,
+        useFancyQuotes = FALSE,
+        show.signif.stars = FALSE,
+        stringsAsFactors = FALSE, # turn off factors
+        scipen = 12,
+        digits = 6,
+        save.defaults = list(ascii = TRUE), # or compress = TRUE
+        device = "quartz"
+    )
 }
 
 # set.seed default
