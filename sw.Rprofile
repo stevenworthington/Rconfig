@@ -1,5 +1,11 @@
 
 # .Rprofile options
+options(
+    stringsAsFactors = FALSE,
+    show.signif.stars = FALSE,
+    width = 220,
+    scipen = 12
+    )
 
 # options
 Sys.setlocale(category = "LC_ALL", locale = "en_US.UTF-8")
@@ -34,10 +40,6 @@ Sys.setenv("PATH" = paste(Sys.getenv("PATH"),"/usr/texbin",sep=":"))
 #  goquartz()
 #}
 
-# aliases
-#s <- base::summary
-#h <- utils::head
-#n <- base::names
 
 # setHook
 setHook(packageEvent("grDevices", "onLoad"),
