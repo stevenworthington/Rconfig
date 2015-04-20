@@ -10,4 +10,4 @@ variable should be set inside a ~/.Renviron file:
 
 To create a local clone of the repository:
 
-    git clone https://github.com/stevenworthington/Rconfig.git ~/Dropbox/.myR/
+    git clone https://github.com/stevenworthington/Rconfig.git ~/Dropbox/.myR/Rconfig
