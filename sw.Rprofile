@@ -38,6 +38,20 @@ setHook(packageEvent("grDevices", "onLoad"),
 # =======================================================================
 # .Rprofile packages
 
+# Make default library path a directory not included in the R installation.
+# This makes /Users/stevenworthington/Documents/R_library the default path without losing the other paths. 
+
+.libPaths(c("~/Documents/R_library", .libPaths()))
+
+# Then add two paths to that one, say /Users/stevenworthington/R/Library/Work and /Users/stevenworthington/R/Library/Test. 
+# The one that's put in the first position is the default one used if you don't specify lib in install.packages().
+# Then you can assign two variables in your .Rprofile.site. 
+# These ones are assigned in the base namespace, and hence always accessible and not removed by ls().
+#.libwork <- '/Users/sworthin/Documents/R_library/Work'
+#.libtest <- '/Users/sworthin/Documents/R_library/Test'
+# which allows you to install packages like:
+# install.packages('aPackage', lib=.libwork)
+
 local({
     # add list of packages to the default packages, set a CRAN mirror
     base <- getOption("defaultPackages") # "datasets", "utils", "grDevices", "graphics", "stats", "methods"
@@ -60,18 +74,4 @@ local({
 #answer <- readline("What database would you like to connect to? ")
 #con <- dbConnect(MySQL(), user="root", password="mypass", dbname=answer)
 #dbs <- dbGetQuery(con, "show databases;")
-
-# Make default library path a directory not included in the R installation.
-# This makes /Users/stevenworthington/Library/R_library the default path without losing the other paths. 
-
-.libPaths(c("~/Documents/R_library", .libPaths()))
-
-# Then add two paths to that one, say /Users/stevenworthington/R/Library/Work and /Users/stevenworthington/R/Library/Test. 
-# The one that's put in the first position is the default one used if you don't specify lib in install.packages().
-# Then you can assign two variables in your .Rprofile.site. 
-# These ones are assigned in the base namespace, and hence always accessible and not removed by ls().
-#.libwork <- '/Users/sworthin/Documents/Analysis/Programs/R_Project/R_workspace/R_library/Work'
-#.libtest <- '/Users/sworthin/Documents/Analysis/Programs/R_Project/R_workspace/R_library/Test'
-# which allows you to install packages like:
-# install.packages('aPackage', lib=.libwork)
 
