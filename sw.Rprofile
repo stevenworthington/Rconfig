@@ -54,21 +54,19 @@ setHook(packageEvent("grDevices", "onLoad"),
 # install.packages('aPackage', lib=.libwork)
 
 local({
-    # add list of packages to the default packages, set a CRAN mirror
-    base <- getOption("defaultPackages") # "datasets", "utils", "grDevices", "graphics", "stats", "methods"
+    # set a CRAN mirror
     r <- getOption("repos") # URL of the repositories for use by update.packages.
-    r["CRAN"] <- "http://cran.mtu.edu/" 
-    extra <- c("devtools", "ggplot2", "plyr", "reshape2", "MASS", "RColorBrewer", "lme4") 
-    options(defaultPackages = c(base, extra), repos = r)
-    # suppressPackageStartupMessages(new) # does not work
-    # invisible(capture.output(new))
-})
-
-local({
+    r["CRAN"] <- "http://cran.mtu.edu/"
+    # add list of extra packages to the default packages
+    base_pkgs <- getOption("defaultPackages") # "datasets", "utils", "grDevices", "graphics", "stats", "methods"
+    extra_pkgs <- c("devtools", "roxygen2", "ggplot2", "scales", "plyr", "reshape2", "MASS", "RColorBrewer", "lme4") 
+    options(defaultPackages = c(base_pkgs, extra_pkgs), repos = r)
     # install personal package
-    library(devtools)
+    # library(devtools)
     install_github("stevenworthington/smisc")
     library(smisc)
+    # suppressPackageStartupMessages(new) # does not work
+    # invisible(capture.output(new))
 })
 
 # mysql databases
