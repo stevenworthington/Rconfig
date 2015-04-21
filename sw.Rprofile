@@ -39,19 +39,20 @@ setHook(packageEvent("grDevices", "onLoad"),
 # .Rprofile packages
 
 local({
-  # add list of packages to the default packages, set a CRAN mirror
-  old <- getOption("defaultPackages") # "datasets", "utils", "grDevices", "graphics", "stats", "methods"
-  r <- getOption("repos") # URLs of the repositories for use by update.packages.
-  r["CRAN"] <- "http://cran.mtu.edu/" # "http://cran.cnr.berkeley.edu/"
-  # new <- c("ggplot2", "plyr", "reshape2", "lattice", "MASS",  "RColorBrewer", "lme4") 
-  # "ape", "beanplot", "caper", "geiger", "ouch", "picante",  "phangorn", "robustbase" "apTreeshape",
-  # "tikzDevice"
-  options(defaultPackages = c(old), repos = r) # use 'old' to automatically load only the default packages
-  # suppressPackageStartupMessages(new) # does not work
-  # invisible(capture.output(new))
+    # add list of packages to the default packages, set a CRAN mirror
+    base <- getOption("defaultPackages") # "datasets", "utils", "grDevices", "graphics", "stats", "methods"
+    r <- getOption("repos") # URL of the repositories for use by update.packages.
+    r["CRAN"] <- "http://cran.mtu.edu/" 
+    extra <- c("devtools", "ggplot2", "plyr", "reshape2", "MASS", "RColorBrewer", "lme4") 
+    options(defaultPackages = c(base, extra), repos = r)
+    # install personal package
+    install_github(stevenworthington/smisc)
+    library(smisc)
+    # suppressPackageStartupMessages(new) # does not work
+    # invisible(capture.output(new))
 })
 
-# (.packages()) # list loaded packages
+(.packages()) # list loaded packages
 
 # mysql databases
 #library("RMySQL")
@@ -63,8 +64,7 @@ local({
 # Make default library path a directory not included in the R installation.
 # This makes /Users/stevenworthington/Library/R_library the default path without losing the other paths. 
 
-.libPaths(c("~/Documents/Analysis/Programs/R_Project/R_workspace/R_library", .libPaths()))
-
+.libPaths(c("~/Documents/R_library", .libPaths()))
 
 # Then add two paths to that one, say /Users/stevenworthington/R/Library/Work and /Users/stevenworthington/R/Library/Test. 
 # The one that's put in the first position is the default one used if you don't specify lib in install.packages().
