@@ -17,6 +17,7 @@ Sys.setlocale(category = "LC_ALL", locale = "en_US.UTF-8")
         save.defaults = list(ascii = TRUE), # or compress = TRUE
         device = "quartz"
     )
+    (.packages()) # list loaded packages
 }
 
 # set.seed default
@@ -60,13 +61,12 @@ local({
     extra <- c("devtools", "ggplot2", "plyr", "reshape2", "MASS", "RColorBrewer", "lme4") 
     options(defaultPackages = c(base, extra), repos = r)
     # install personal package
+    library(devtools)
     install_github(stevenworthington/smisc)
     library(smisc)
     # suppressPackageStartupMessages(new) # does not work
     # invisible(capture.output(new))
 })
-
-(.packages()) # list loaded packages
 
 # mysql databases
 #library("RMySQL")
