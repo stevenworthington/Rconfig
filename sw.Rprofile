@@ -60,12 +60,15 @@ local({
     r["CRAN"] <- "http://cran.mtu.edu/" 
     extra <- c("devtools", "ggplot2", "plyr", "reshape2", "MASS", "RColorBrewer", "lme4") 
     options(defaultPackages = c(base, extra), repos = r)
+    # suppressPackageStartupMessages(new) # does not work
+    # invisible(capture.output(new))
+})
+
+local({
     # install personal package
     library(devtools)
     install_github("stevenworthington/smisc")
     library(smisc)
-    # suppressPackageStartupMessages(new) # does not work
-    # invisible(capture.output(new))
 })
 
 # mysql databases
