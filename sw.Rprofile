@@ -17,8 +17,6 @@ Sys.setlocale(category = "LC_ALL", locale = "en_US.UTF-8")
         save.defaults = list(ascii = TRUE), # or compress = TRUE
         device = "quartz"
     )
-    if(!require(devtools)) install.packages("devtools")
-    library(devtools)
 }
 
 # set.seed default
@@ -60,9 +58,10 @@ local({
     r["CRAN"] <- "http://cran.mtu.edu/"
     # add list of extra packages to the default packages
     base_pkgs <- getOption("defaultPackages") # "datasets", "utils", "grDevices", "graphics", "stats", "methods"
-    extra_pkgs <- c("roxygen2", "ggplot2", "scales", "plyr", "reshape2", "MASS", "RColorBrewer", "lme4") 
+    extra_pkgs <- c("devtools", "roxygen2", "ggplot2", "scales", "plyr", "reshape2", "MASS", "RColorBrewer", "lme4") 
     options(defaultPackages = c(base_pkgs, extra_pkgs), repos = r)
     # install personal package
+    library(devtools)
     install_github("stevenworthington/smisc")
     library(smisc)
     # suppressPackageStartupMessages(new) # does not work
