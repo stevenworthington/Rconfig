@@ -62,7 +62,7 @@ local({
     options(defaultPackages = c(base, extra), repos = r)
     # install personal package
     library(devtools)
-    install_github(stevenworthington/smisc)
+    install_github("stevenworthington/smisc")
     library(smisc)
     # suppressPackageStartupMessages(new) # does not work
     # invisible(capture.output(new))
