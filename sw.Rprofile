@@ -13,7 +13,7 @@ Sys.setlocale(category = "LC_ALL", locale = "en_US.UTF-8")
         stringsAsFactors = FALSE, # turn off factors
         scipen = 12,
         digits = 6,
-        max.print = 1000,
+        max.print = 10000,
         save.defaults = list(ascii = TRUE), # or compress = TRUE
         device = "quartz"
     )
