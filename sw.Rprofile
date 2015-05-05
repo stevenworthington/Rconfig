@@ -55,7 +55,7 @@ setHook(packageEvent("grDevices", "onLoad"),
 local({
     # set a CRAN mirror
     r <- getOption("repos") # URL of the repositories for use by update.packages.
-    r["CRAN"] <- "http://cran.mtu.edu/"
+    r["CRAN"] <- "http://cran.cnr.Berkeley.edu/"
     # add list of extra packages to the default packages
     base_pkgs <- getOption("defaultPackages") # "datasets", "utils", "grDevices", "graphics", "stats", "methods"
     extra_pkgs <- c("devtools", "roxygen2", "ggplot2", "scales", "plyr", "reshape2", "MASS", "RColorBrewer", "lme4") 
